@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('types', function (Blueprint $table) {
-            //
+            $table->foreignId('project_id')->after('id')->constrained();
         });
     }
 
@@ -26,7 +26,13 @@ return new class extends Migration
     public function down()
     {
         Schema::table('types', function (Blueprint $table) {
-            //
+            $table->dropForeign('types_user_id_forign');
+            $table->dropColumn('project_id');
+            $table->foreignId('project_id')
+            ->after('id')
+            ->nullable()
+            ->constrained()
+            ->nullOnDelete();
         });
     }
 };
