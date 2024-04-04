@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('types', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('project_id')->constrained();
-            $table->string('lable', 100);
-            $table->timestamps();
+        Schema::table('types', function (Blueprint $table) {
+            //
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('types');
+        Schema::table('types', function (Blueprint $table) {
+            //
+        });
     }
 };
